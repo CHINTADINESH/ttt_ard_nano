@@ -1,25 +1,23 @@
 # Tic-Tac-Toe Game using TinyML and BLE
 
 ## Authors
-Dinesh Reddy Chinta (dc47444)
-Tejas Bhagwat (tb34454)
+[Dinesh Reddy Chinta](https://github.com/chintadinesh)
+Tejas Bhagwat 
 
 
 ## Project Overview
 The project involves implementing the popular tic-tac-toe game using speech recognition for player inputs and Bluetooth Low Energy (BLE) integration to track the status of the game on a mobile device.
 The following points describe the project overview:
 
-  TinyML for Arduino
-  How to train a model
-  Code overview 
-  Tic-Tac-Toe game 
-  Challenges 
-  Taking input from the user
-  Code
-  Test case
-  BLE integration
-  Game play demo
-  References
+  * TinyML for Arduino
+  * How to train a model
+  * Code overview 
+  * Tic-Tac-Toe game 
+  * Challenges 
+  * Taking input from the user
+  * BLE integration
+  * Game play demo
+  * References
 
 # TinyML for Arduino
   Machine Learning involves training a model on previously collected, processed data, to be able to predict about the new data.
@@ -56,6 +54,7 @@ Additionally, one important task in Machine Learning is the data that the model 
   The current learning rates are set to run for 2 hours. Since our target is embedded board, we can increase the learning rate and reduce the number of training steps to reduce the training time. This is only possible because our inference is in fixed-point and compromising a little bit on accuracy during training is acceptable.
 
   Here are some of the parameters that we can play with in the notebook. From our end, we did not modify any of them:
+
     ```
     QUANT_INPUT_MIN = 0.0
     QUANT_INPUT_MAX = 26.0
@@ -88,23 +87,24 @@ To run this on Micro controllers, we need to run this through another step of co
 ### 2. Tic-Tac-Toe game
 
 #### Game rules
-It is a 3x3 matrix game.
-The first player to get three rows, columns, or diagonal wins the game.
-Starter code for the game: here is the C starter code for the game.
-We adapted the starter code to our requirements.
-For the game design, we follow these steps when we get new input:
-new input should not be taken for already existing position
-The sequence of players should also be maintained.
-eg,. player 1 must enter the input after player 2.
-After the game is over, we should not take any input.
-Let us design a simple state-machine based on the above requirements.
-We need states for the following
-player1 is playing.
-player2 is playing.
-game over.
+- It is a 3x3 matrix game.
+- The first player to get three rows, columns, or diagonal wins the game.
+- Starter code for the game: here is the C starter code for the game.
+- We adapted the starter code to our requirements.
+- For the game design, we follow these steps when we get new input:
+- new input should not be taken for already existing position
+- The sequence of players should also be maintained.
+- eg,. player 1 must enter the input after player 2.
+- After the game is over, we should not take any input.
+- Let us design a simple state-machine based on the above requirements.
+- We need states for the following
+- player1 is playing.
+- player2 is playing.
+- game over.
 
   We print the board to the serial monitor, when a new entry is made, to track the status of the game.
   Challenges for playing the game on the microcontroller:
+
   As noted in Lab4, the Recall rate for the speech recognition is very low for the board. 
   Precision = 9/10
   Recall = 3/10
@@ -136,8 +136,8 @@ Binary Phase Shift Keying protocol
     "0", "1", "0", "0", "0", "0", "0", "1", "0", "0"
 
   New metrics:
-    Precision = 9/10
-    Recall = 10/10
+    - Precision = 9/10
+    - Recall = 10/10
 
   To further reduce the error rate, we added two levels of protection for each entry:
 
@@ -147,11 +147,11 @@ Binary Phase Shift Keying protocol
     _ _ _ _ 
     _ _
 
-      Position on the board as first four bits: _ _ _ _
-      The next bit is whether the board has detected the speech correctly.
-      The user can simply disable the current input by setting this bit to 0
-      The last bit is for parity. If this goes wrong, the input is discarded.
-      This last bit is just for an additional layer of conformity.
+      - Position on the board as first four bits: _ _ _ _
+      - The next bit is whether the board has detected the speech correctly.
+      - The user can simply disable the current input by setting this bit to 0
+      - The last bit is for parity. If this goes wrong, the input is discarded.
+      - This last bit is just for an additional layer of conformity.
 
 
     Example: 
@@ -160,15 +160,10 @@ Binary Phase Shift Keying protocol
 
 
 References
-[1] Jupyter notebook for training your model
-(https://github.com/tensorflow/tflite-micro/blob/main/tensorflow/lite/micro/examples/micro\_speech/train/train\_micro\_speech\_model.ipynb)
-[2] Micro speech git repository for training your model
-(https://github.com/tensorflow/tflite-micro/tree/main/tensorflow/lite/micro/examples/micro\_speech/train)
-[3] Starter code for the game in C with number as input
-(http://www.cprogrammingnotes.com/question/tic-tac-toe-game.html)
-[4] Machine Learning using tinyML
-(https://docs.google.com/document/d/1VayQr89qMNv3MaO78LifrfpHyxtMV6waWgm95xU0fIM/edit#)
-[5] Speech micro train data
-(https://storage.googleapis.com/download.tensorflow.org/models/tflite/speech\_micro\_train\_2020\_05\_10.tgz)
+[1] [Jupyter notebook for training your model](https://github.com/tensorflow/tflite-micro/blob/main/tensorflow/lite/micro/examples/micro\_speech/train/train\_micro\_speech\_model.ipynb)
+[2] [Micro speech git repository for training your model] (https://github.com/tensorflow/tflite-micro/tree/main/tensorflow/lite/micro/examples/micro\_speech/train)
+[3] [Starter code for the game in C with number as input] (http://www.cprogrammingnotes.com/question/tic-tac-toe-game.html)
+[4] [Machine Learning using tinyML] (https://docs.google.com/document/d/1VayQr89qMNv3MaO78LifrfpHyxtMV6waWgm95xU0fIM/edit#)
+[5] [Speech micro train data] (https://storage.googleapis.com/download.tensorflow.org/models/tflite/speech\_micro\_train\_2020\_05\_10.tgz)
 
 
