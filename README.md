@@ -164,12 +164,12 @@ References
 
 [1] [Jupyter notebook for training your model](https://github.com/tensorflow/tflite-micro/blob/main/tensorflow/lite/micro/examples/micro\_speech/train/train\_micro\_speech\_model.ipynb)
 
-[2] [Micro speech git repository for training your model] (https://github.com/tensorflow/tflite-micro/tree/main/tensorflow/lite/micro/examples/micro\_speech/train)
+[2] [Micro speech git repository for training your model](https://github.com/tensorflow/tflite-micro/tree/main/tensorflow/lite/micro/examples/micro\_speech/train)
 
-[3] [Starter code for the game in C with number as input] (http://www.cprogrammingnotes.com/question/tic-tac-toe-game.html)
+[3] [Starter code for the game in C with number as input](http://www.cprogrammingnotes.com/question/tic-tac-toe-game.html)
 
-[4] [Machine Learning using tinyML] (https://docs.google.com/document/d/1VayQr89qMNv3MaO78LifrfpHyxtMV6waWgm95xU0fIM/edit#)
+[4] [Machine Learning using tinyML](https://docs.google.com/document/d/1VayQr89qMNv3MaO78LifrfpHyxtMV6waWgm95xU0fIM/edit#)
 
-[5] [Speech micro train data] (https://storage.googleapis.com/download.tensorflow.org/models/tflite/speech\_micro\_train\_2020\_05\_10.tgz)
+[5] [Speech micro train data](https://storage.googleapis.com/download.tensorflow.org/models/tflite/speech\_micro\_train\_2020\_05\_10.tgz)
 
 
