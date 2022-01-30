@@ -358,7 +358,6 @@ if(test) {
       (
           (found_command[0] == 'y')
         || (found_command[0] == 'n')
-        || (found_command[0] == 'u')
        )
     ) {
 
@@ -370,7 +369,8 @@ if(!test) {
 }
       
 
-  
+      Serial.print("\nCurrent Player = ");
+      Serial.println(player_state);
       // print the board status and the game mode
       //TF_LITE_REPORT_ERROR(error_reporter, "Printing board %c", square[0]);
       board(error_reporter);

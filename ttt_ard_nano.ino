@@ -16,57 +16,36 @@ limitations under the License.
 /*
  * We aim to design a tik_tak_toe game in this project.
  * How does the game work
- * It is a 3x3 matrix game.
+ * It is a 3x3 matrix game.s. All Rights Reserved.
+
  * The first player to get three rows, columns, or diagonal wins the game
  * So, we maintain a matrix that store the inputs from both the users.
  * Let us represent the matrix, where the inputs are:
- *  0 for player 1
- *  1 for player 2
- *  -1 if no one has entered
- *  We constantly print the board to the serial monitor
+ * binary number
+ *  We print the board to the serial monitor, when a new entry is made
  *  
- *  Check for new input:
- *  1. new input should not be taken for already existing position
- *  2.  The sequece of players should also be maintainted. 
- *      eg,. player 1 must enter the input after player 2.
- *  3. After game over, we should not take any input
- *  4. Let us design a state meachine based on the above requirements. 
- *      We need states for the following
- *      1. before the start of the game.
- *      2. player1 is playing.
- *      3. player2 is playing.
- *      4. game over.
- *  5. We provide an option to reset the game.
- *  6. Since the speech recognisation is not perfect, we need to be able to retake the input.
- *      Let us use the word "confirm" to assert that the input is correct.
- *      "again" to restart the input process.
- *  7. Input is not a single step. This is how input is taken:
- *      1. First word = player number.
- *      2. Second word = position (1 to 9)
- *      3. third word = confirm/again
+ * Check for new input:
+ * 1. new input should not be taken for already existing position
+ * 2.  The sequece of players should also be maintainted. 
+ *     eg,. player 1 must enter the input after player 2.
+ * 3. After game over, we should not take any input
+ * 4. Let us design a state meachine based on the above requirements. 
+ *     We need states for the following
+ *     1. player1 is playing.
+ *     2. player2 is playing.
+ *     3. game over.
+ * 5. Input is not a single step. This is how input is taken:
+ * 
+ * 6. Speech recognization words:
+ *    "yes", "no"
  *  
- *  Speech recognization words:
- *  1. "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" 
- *  2. "restart"
- *  3. "confirm"
- *  4. "again"
- *  
- *  The above design is complicated. Hence, we simplified it to the following. 
- *  1. The input from the user is to move the current cell to left, right, up, down
- *    def get_new_x(x, input):
-        if(input == "left"):
-          new_x = 3*(x/3) + (x-1)%3
-        elif(input == "right"):
-          new_x = 3*(x/3) + (x+1)%3
-        elif(input == "up"):
-          new_x = (x - 3) % 9
-        elif(input == "down"):
-          new_x = (x + 3) % 9
-        return(new_x)
- *
- * 2. The game starts with player 1 mode and switches to player 2...
- * 3. Game over state is reached when one of them wins or the board is complete
- * 4. There are only three states.
+ * 7. The game starts with player 1 mode and switches to player 2...
+ * 8. Input format:
+ *    Position on the board as first four bits: _ _ _ _ 
+ *    The next bit is whether the board has detected the speech correctly.
+ *    The user can simply disable the current input by setting this bit to 0
+ *    The last bit is for parity. If this goes wrong, the input is discarded.
+ *    This last bit is just for additional layer of confirmity.
  */
 
 #include <TensorFlowLite.h>
@@ -89,10 +68,10 @@ limitations under the License.
 
 enum game_state{PLAYER1, PLAYER2, GAMEOVER};
 
-  char square[10];
-  char input_buf[10];
-  int input_ind;
-  int player_state;
+char square[10];
+char input_buf[10];
+int input_ind;
+int player_state;
 
 
 // Globals, used for compatibility with Arduino-style sketches.
@@ -107,11 +86,6 @@ namespace {
   
   int32_t state = 0;
   
-  //char input_buf[10];
-  //int input_ind = 0;
-  
-  //char square[10];
-
   // Create an area of memory to use for input, output, and intermediate arrays.
   // The size of this will depend on the model you're using, and may need to be
   // determined by experimentation.
