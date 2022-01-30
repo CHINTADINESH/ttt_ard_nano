@@ -124,7 +124,7 @@ Binary Phase Shift Keying protocol
         	5 -> 0b0101
         	6 -> 0b0110
         	7 -> 0b0111
-          8 -> 0b1000
+            8 -> 0b1000
         	9 -> 0b1001
 
   Here we encode our words “yes” to 1 and “no” to 0.
@@ -132,20 +132,19 @@ Binary Phase Shift Keying protocol
   In the gesture recognition model, we did an unsymmetric mapping of inputs to bits “1”, “0”. This increased the precision recall scores of the model.
 
   Map digits to 0 or 1
-    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
-    "0", "1", "0", "0", "0", "0", "0", "1", "0", "0"
+    * "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
+    * "0", "1", "0", "0", "0", "0", "0", "1", "0", "0"
 
   New metrics:
-    - Precision = 9/10
-    - Recall = 10/10
+      - Precision = 9/10
+      - Recall = 10/10
 
   To further reduce the error rate, we added two levels of protection for each entry:
 
   Input is not a single step. This is how input is taken:
 
   BPSK encoding scheme for taking inputs.
-    _ _ _ _ 
-    _ _
+    _ _ _ _ _ _ 
 
       - Position on the board as first four bits: _ _ _ _
       - The next bit is whether the board has detected the speech correctly.
