@@ -132,12 +132,14 @@ Binary Phase Shift Keying protocol
   In the gesture recognition model, we did an unsymmetric mapping of inputs to bits “1”, “0”. This increased the precision recall scores of the model.
 
   Map digits to 0 or 1
+
     * "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
     * "0", "1", "0", "0", "0", "0", "0", "1", "0", "0"
 
   New metrics:
-      - Precision = 9/10
-      - Recall = 10/10
+
+      Precision = 9/10 
+      Recall = 10/10
 
   To further reduce the error rate, we added two levels of protection for each entry:
 
